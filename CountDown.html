@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset=utf-8>
+<title>Practical Test Ness</title>
+<link rel="stylesheet" href="CountDown.css"/>
+<script type="text/javascript" src="CountDown.js"/>
+<!--[if IE]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+
+
+function Countdown(cd) {
+ 
+ 	this.cd = cd;
+ 	
+ 	function setElement(id, value) {
+		if (value.length < 2) {
+		value = "0" + value;
+		}
+
+		if (id == "countdown-days" && "countdown-hours" && "countdown-minutes" && "countdown-seconds" && value == "0") {
+		clearInterval(countDown);
+		$("#countdown>div:first").toggleClass("on off");
+		$("#countdown>div:last").toggleClass("on off");
+		$("#countdown").toggleClass("commentary");
+		$("#fixtureList").fadeIn();
+
+		}
+		
+		window.document.getElementById(id).innerHTML = value;
+		}
+ 	
+ 	function countdown() {
+ 		now		= new Date();
+ 	  	diff	= new Date(this.cd - now);
+ 	  	
+ 		seconds_left  = Math.floor(diff.valueOf() / 1000);
+ 	
+ 		seconds  = Math.floor(seconds_left / 1) % 60;
+ 		minutes  = Math.floor(seconds_left / 60) % 60;
+ 		hours    = Math.floor(seconds_left / 3600) % 24;
+ 		days     = Math.floor(seconds_left / 86400) % 86400;
+ 		
+ 		setElement('countdown-days', days);
+ 		setElement('countdown-hours', hours);
+ 		setElement('countdown-minutes', minutes);
+ 		setElement('countdown-seconds', seconds);
+ 		
+ 		countdown.timer = setTimeout(countdown, 1000);
+ 	}
+ 	
+ 		
+ 	function start() {
+ 		this.timer = setTimeout(countdown, 1000);
+ 	}
+ 	
+ 	start(cd);	
+ }
+ 
+ Countdown(new Date("Sep 12 2013 15:00:00"));
+
+</script>
+
+
+</head>
+<body>
+	<section class="wrapper">
+		<img id="logo" alt="Hull city team logo" src="cutups/hullCityLogo.jpg"/>
+		<h1 class="city">Aston Villa v Hull City</h1>
+		<img id="" alt="Logo premier league" src="cutups/premierLeagueLogo.jpg"/>
+		<div id="information">
+			<h3 class="place">Villa Park</h3>
+			<time datetime="2013-09-12T15:00" id="date"> 12th Sept. 03:00 pm</time>
+		</div>
+
+		<aside class="countDown">
+			<div class="on">
+					<h1>Countdown untill kick-off</h1>
+					<span class="timer" id="countdown-days"></span>
+					<span class="timer" id="countdown-hours"></span>
+					<span class="timer" id="countdown-minutes"></span>
+					<span class="timer" id="countdown-seconds"></span>
+				</div>
+				<div class="off" id="commentary">
+					<h3>Live coverage now on</h3>
+					<p>click here to listen to live commentary</p>
+			</div>
+		</aside>
+		
+		<aside id="menu">
+			<span class="options">Preview</span>
+			<span class="options">Hospitality</span>
+			<span class="options">Buy tickets</span>
+		</aside>
+		
+		<div id="down">
+			<img alt="Advert banner" src="cutups/betAdvert.gif"/>
+		</div>		
+	</section>
+	
+	<section class="off" id="fixtureList">
+		<h4>FULL FIXTURE LIST</h4>
+		<span>click here</span>		
+	</section>
+</body>
+</html>
