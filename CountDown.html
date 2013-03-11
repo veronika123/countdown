@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -69,42 +69,45 @@ function Countdown(cd) {
 </head>
 <body>
 	<section class="wrapper">
+	
 		<img id="logo" alt="Hull city team logo" src="cutups/hullCityLogo.jpg"/>
 		<h1 class="city">Aston Villa v Hull City</h1>
-		<img id="" alt="Logo premier league" src="cutups/premierLeagueLogo.jpg"/>
+		<img alt="Logo premier league" src="cutups/premierLeagueLogo.jpg"/>
+		
 		<div id="information">
-			<h3 class="place">Villa Park</h3>
-			<time datetime="2013-09-12T15:00" id="date"> 12th Sept. 03:00 pm</time>
+			<h3>Villa Park</h3>
+			<time datetime="2013-09-12T15:00"> 12th Sept. 03:00 pm</time>
 		</div>
 
 		<aside class="countDown">
-			<div class="on">
+				<div class="on">
 					<h1>Countdown untill kick-off</h1>
-					<span class="timer" id="countdown-days"></span>
-					<span class="timer" id="countdown-hours"></span>
-					<span class="timer" id="countdown-minutes"></span>
-					<span class="timer" id="countdown-seconds"></span>
+					<span id="countdown-days">days</span>
+					<span id="countdown-hours">days</span>
+					<span id="countdown-minutes">minutes</span>
+					<span id="countdown-seconds">seconds</span>
 				</div>
+				
 				<div class="off" id="commentary">
 					<h3>Live coverage now on</h3>
-					<p>click here to listen to live commentary</p>
+					<a href="">click here to listen to live commentary</a>
 			</div>
 		</aside>
 		
-		<aside id="menu">
-			<span class="options">Preview</span>
-			<span class="options">Hospitality</span>
-			<span class="options">Buy tickets</span>
-		</aside>
+		<nav class="menu">
+			<a href="">Preview</a>
+			<a href="">Hospitality</a>
+			<a href="">Buy tickets</a>
+		</nav>
 		
 		<div id="down">
 			<img alt="Advert banner" src="cutups/betAdvert.gif"/>
 		</div>		
-	</section>
-	
-	<section class="off" id="fixtureList">
-		<h4>FULL FIXTURE LIST</h4>
-		<span>click here</span>		
+
+		<div class="off" id="fixtureList">
+			<h4>FULL FIXTURE LIST</h4>
+			<a href="">click here</a>	
+		</div>	
 	</section>
 </body>
 </html>
