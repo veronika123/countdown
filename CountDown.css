@@ -81,22 +81,20 @@ h1.city
 {
 	background-image:url('cutups/numberBkg.gif');
 	color: #660033;
-	font-size:30px;
 	text-align:center;
+	font-size:35px;
 	font-weight:bold;
-	margin: 5px 0 2px 7px;
 	float:left; 
 	width:61px; 
 	height:65px;
 	display:block;
+	margin-left:7px;
 }
-.on
+
+.countDown span p
 {
-	display:run-in;
-}
-.off 
-{
-	display: none;
+	font-size:15px;
+	margin-bottom:15px;
 }
 
 .menu
@@ -148,4 +146,9 @@ h1.city
 {
 	text-decoration: none;
 	color: #660033;
+}
+
+.off fixtureList
+{
+	display:none;
 }
