@@ -21,7 +21,7 @@
       	endTime: new Date("Sep 12 2013 15:48:00"),
 
         onCountDownEnd: function () {
-            console.log("koniec");
+        //    console.log("koniec");
         },
         onCountDownChange: false
       };
