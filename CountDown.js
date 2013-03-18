@@ -21,7 +21,7 @@
       	endTime: new Date("Sep 12 2013 15:48:00"),
 
         onCountDownEnd: function () {
-        //    console.log("koniec");
+       
         },
         onCountDownChange: false
       };
@@ -37,7 +37,7 @@
         init : function () {
           
           return this.each(function () { // Maintaining Chainability
-           //console.log(options.endTime);
+          
 			     pocitadlo(options.endTime);
         
           });
