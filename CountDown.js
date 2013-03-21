@@ -21,9 +21,12 @@
       	endTime: new Date("Sep 12 2013 15:48:00"),
 
         onCountDownEnd: function () {
-       
+        
         },
-        onCountDownChange: false
+
+        onCountDownChange: function (){
+
+        }
       };
 
       var methods;
@@ -37,17 +40,17 @@
         init : function () {
           
           return this.each(function () { // Maintaining Chainability
-          
-			     pocitadlo(options.endTime);
+			     
+            pocitadlo(options.endTime);
         
           });
         },
 
-        end: function() {
+/*        end: function() {
           return this.each(function () {
           $(this).data('isEnd', true);
           });
-        },
+        },*/
 
         /**
         * destroy function
@@ -116,13 +119,15 @@
  		var days     = Math.floor(seconds_left / 86400) % 86400;
 
     if (diff.getTime() <= 0) {
+
       options.onCountDownEnd();
+      
       $("#fixtureList").toggleClass("on off");
-      $("#count").toggleClass("on off");
+      $("#count1").toggleClass("on off");
       $("#commentary").toggleClass("on off");
       $("#heading").toggleClass("on off");
-    }
-    else {
+
+    } else {
       setElement($htmlElement, days, hours, minutes, seconds);
 
    		var timer = setTimeout(function () {
@@ -130,7 +135,6 @@
       }, 1000);
     }
  	}
-
       // methods caller
       if ( methods[method] ) {
         // call selected method
