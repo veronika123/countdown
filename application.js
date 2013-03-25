@@ -6,6 +6,12 @@ var options1 = {
       $("#count1").toggleClass("on off");
       $("#commentary").toggleClass("on off");
       $("#heading").toggleClass("on off");
+      $('#count2').countdown('reset', new Date().getTime()+5000);
+
+      var xxx = setTimeout(function(){
+        $('#count2').countdown('stop');
+      }, 2000);
+      
     }, 
     onCountDownChange: function() 
     {
@@ -13,12 +19,8 @@ var options1 = {
     }
 };
 
-var options2 = {
-	endTime: new Date().getTime()+10000,
-	onCountDownEnd: function(){
-		$("#count2").toggleClass("on off");
-	}
-};
+
+
 
 $('#count1').countdown('init', options1);
-$('#count2').countdown('init', options2);
+$('#count2').countdown('init');
