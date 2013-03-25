@@ -19,9 +19,7 @@
       var options = 
       {
       	endTime: new Date("Sep 12 2013 15:00:00"),
-
         onCountDownEnd: false,
-
         onCountDownChange: false,
       };
 
@@ -35,30 +33,21 @@
         */
         init : function () {
           
-          return this.each(function () { // Maintaining Chainability
-			     
+          return this.each(function () { // Maintaining Chainability  
           $(this).data('endTime', options.endTime);
-
-          pocitadlo(options.endTime);      
-        
+          counter(options.endTime);      
           });
         },
 
         reset : function (date) {
-
           return this.each(function () {
-
           $htmlElement.data('endTime', date);
-
           });
         },
 
         stop : function () {
-
           return this.each(function () {
-
           $htmlElement.data('stopp', true);
-
           });
         },
 
@@ -66,72 +55,40 @@
         * destroy function
         */
         destroy : function () {
-
         }
       };
 
 
-	function setElement(id, fDays, fHours, fMinutes, fSeconds) {
- 		// Ak je dlzka hodnoty mensia ako 2, zmen ju. (priklad: 9 sekund zmen na 09 sekund
+  function addElement(id, daysElement, hoursElement, minElement, secElement) {
+    // Ak je dlzka hodnoty mensia ako 2, zmen ju. (priklad: 9 sekund zmen na 09 sekund
 
-		var fDaysKoncovka;
-    var fHoursKoncovka;
-    var fMinutesKoncovka;
-    var fSecondsKoncovka;
+    if (daysElement < 10) {daysElement = "0" + daysElement;}
+    if (hoursElement < 10) {hoursElement = "0" + hoursElement;}
+    if (minElement < 10) {minElement = "0" + minElement;}
+    if (secElement < 10) {secElement = "0" + secElement;}
 
-    if (fDays < 10) {
-			fDays = "0" + fDays;
-		}
-		if (fHours < 10) {
-			fHours = "0" + fHours;
-		}
-		if (fMinutes < 10) {
-			fMinutes = "0" + fMinutes;
-		}
+    if (daysElement === "01") {var daysEnding = " ";} else {daysEnding = "s";}
+    if (hoursElement === "01") {var hoursEnding = " ";} else {hoursEnding = "s";}
+    if (minElement === "01") {var minEnding = " ";} else {minEnding = "s";}
+    if (secEnding === "01") {var secEnding = " ";} else {secEnding = "s";}
 
-		if (fSeconds < 10) {
-			fSeconds = "0" + fSeconds;
-		}
-		if (fDays === "01") {
-			fDaysKoncovka = " ";
-		} else {
-			fDaysKoncovka = "s";
-		}
+    $(id).html("<span id='countdown-days'>"+daysElement+"<p>day"+daysEnding+"</p></span><span id='countdown-hours'>"+hoursElement+"<p>hour"+hoursEnding+"</p></span><span id='countdown-minutes'>"+minElement+"<p>minute"+minEnding+"</p></span><span id='countdown-seconds'>"+secElement+"<p>second"+secEnding+"</p></span>");
+  }
 
-		if (fHours === "01") {
-			fHoursKoncovka = " ";
-		} else {
-			fHoursKoncovka = "s";
-		}
-
-		if (fMinutes === "01") {
-			fMinutesKoncovka = " ";
-		} else {
-			fMinutesKoncovka = "s";
-		}
-
-		if (fSeconds === "01") {
-			fSecondsKoncovka = " ";
-		} else {
-			fSecondsKoncovka = "s";
-		}
-		$(id).html("<span id='countdown-days'>"+fDays+"<p>day"+fDaysKoncovka+"</p></span><span id='countdown-hours'>"+fHours+"<p>hour"+fHoursKoncovka+"</p></span><span id='countdown-minutes'>"+fMinutes+"<p>minute"+fMinutesKoncovka+"</p></span><span id='countdown-seconds'>"+fSeconds+"<p>second"+fSecondsKoncovka+"</p></span>");
-	}
-
-	function pocitadlo(endTime) 
+	function counter(endTime) 
   {
  		var now		= new Date(); 	  
-    var diff	= new Date(endTime - now);
- 		var seconds_left  = Math.floor(diff / 1000);
+    var difference	= new Date(endTime - now);
+ 		var seconds_left  = Math.floor(difference / 1000);
  	
  		var seconds  = Math.floor(seconds_left / 1) % 60;
  		var minutes  = Math.floor(seconds_left / 60) % 60;
  		var hours    = Math.floor(seconds_left / 3600) % 24;
  		var days     = Math.floor(seconds_left / 86400) % 86400;
 
-    if (diff.getTime() >= 0) {
+    if (difference.getTime() >= 0) {
 
-     setElement($htmlElement, days, hours, minutes, seconds);
+     addElement($htmlElement, days, hours, minutes, seconds);
 
      if (typeof(options.onCountDownChange) === "function") 
       {
@@ -140,15 +97,16 @@
       if($htmlElement.data('stopp')){}
 
         else{
+
           if ($htmlElement.data('endTime')) {
             endTime = $htmlElement.data('endTime');
             $htmlElement.data('endTime', false);
-            
+
           }
-      var timer = setTimeout(function () {
-        pocitadlo(endTime);
-      }, 1000);
-}
+          var timer = setTimeout(function () {
+                            counter(endTime);
+                      }, 1000);
+        }
     } else {
         if (typeof(options.onCountDownEnd) === "function")
         {
