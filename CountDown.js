@@ -18,7 +18,7 @@
       var $htmlElement = $(this);
       var options = 
       {
-      	endTime: new Date("Sep 12 2013 15:48:00"),
+      	endTime: new Date("Sep 12 2013 15:00:00"),
 
         onCountDownEnd: false,
 
@@ -37,18 +37,18 @@
           
           return this.each(function () { // Maintaining Chainability
 			     
-         // $(this).data('endTime', options.endTime);
+          $(this).data('endTime', options.endTime);
 
           pocitadlo(options.endTime);      
         
           });
         },
 
-        setTime : function () {
+        reset : function (date) {
 
           return this.each(function () {
 
-          //$(this).data('endTime', date);
+          $htmlElement.data('endTime', date);
 
           });
         },
@@ -57,7 +57,7 @@
 
           return this.each(function () {
 
-          //$(this).data('stopp', true);
+          $htmlElement.data('stopp', true);
 
           });
         },
@@ -120,8 +120,8 @@
 
 	function pocitadlo(endTime) 
   {
- 		var now		= new Date();
- 	  var diff	= new Date(endTime - now);
+ 		var now		= new Date(); 	  
+    var diff	= new Date(endTime - now);
  		var seconds_left  = Math.floor(diff / 1000);
  	
  		var seconds  = Math.floor(seconds_left / 1) % 60;
@@ -132,17 +132,25 @@
     if (diff.getTime() >= 0) {
 
      setElement($htmlElement, days, hours, minutes, seconds);
+
      if (typeof(options.onCountDownChange) === "function") 
       {
         options.onCountDownChange();
       }
+      if($htmlElement.data('stopp')){}
 
+        else{
+          if ($htmlElement.data('endTime')) {
+            endTime = $htmlElement.data('endTime');
+            $htmlElement.data('endTime', false);
+            
+          }
       var timer = setTimeout(function () {
         pocitadlo(endTime);
       }, 1000);
-    }
-    else {
-      if (typeof(options.onCountDownEnd) === "function")
+}
+    } else {
+        if (typeof(options.onCountDownEnd) === "function")
         {
           options.onCountDownEnd();
         } 
